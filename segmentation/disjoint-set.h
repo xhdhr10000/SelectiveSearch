@@ -22,18 +22,25 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA
 // disjoint-set forests using union-by-rank and path compression (sort of).
 
 typedef struct {
+  int top, right, bottom, left;
+  int area() { return (bottom-top+1) * (right-left+1); }
+} BBox;
+
+typedef struct {
   int rank;
   int p;
   int size;
+  BBox bbox;
 } uni_elt;
 
 class universe {
 public:
-  universe(int elements);
+  universe(int width, int height);
   ~universe();
-  int find(int x);  
+  int find(int x, bool keep_structure=false);
   void join(int x, int y);
   int size(int x) const { return elts[x].size; }
+  BBox bbox(int x) { return elts[x].bbox; }
   int num_sets() const { return num; }
 
 private:

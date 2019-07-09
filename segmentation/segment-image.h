@@ -117,7 +117,7 @@ universe *segment_image(image<rgb> *im, float sigma, float c, int min_size) {
   delete smooth_b;
 
   // segment
-  universe *u = segment_graph(width*height, num, edges, c);
+  universe *u = segment_graph(width, height, num, edges, c);
   
   // post process small components
   for (int i = 0; i < num; i++) {
@@ -131,7 +131,7 @@ universe *segment_image(image<rgb> *im, float sigma, float c, int min_size) {
   return u;
 }
 
-image<rgb> *render_image(universe *u, int width, int height) {
+image<rgb> *render_segment_image(universe *u, int width, int height) {
   image<rgb> *output = new image<rgb>(width, height);
 
   // pick random colors for each component

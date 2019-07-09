@@ -45,15 +45,16 @@ bool operator<(const edge &a, const edge &b) {
  * edges: array of edges.
  * c: constant for treshold function.
  */
-universe *segment_graph(int num_vertices, int num_edges, edge *edges, 
+universe *segment_graph(int width, int height, int num_edges, edge *edges, 
 			float c) { 
   // sort edges by weight
   std::sort(edges, edges + num_edges);
 
   // make a disjoint-set forest
-  universe *u = new universe(num_vertices);
+  universe *u = new universe(width, height);
 
   // init thresholds
+  int num_vertices = width * height;
   float *threshold = new float[num_vertices];
   for (int i = 0; i < num_vertices; i++)
     threshold[i] = THRESHOLD(1,c);

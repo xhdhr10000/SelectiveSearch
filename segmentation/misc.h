@@ -23,6 +23,9 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA
 
 #include <cmath>
 
+#define MIN(X,Y) ((X)<(Y)?(X):(Y))
+#define MAX(X,Y) ((X)>(Y)?(X):(Y))
+
 #ifndef M_PI
 #define M_PI 3.141592653589793
 #endif
@@ -30,6 +33,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA
 typedef unsigned char uchar;
 
 typedef struct { uchar r, g, b; } rgb;
+typedef struct { float r, g, b; } frgb;
 
 inline bool operator==(const rgb &a, const rgb &b) {
   return ((a.r == b.r) && (a.g == b.g) && (a.b == b.b));
