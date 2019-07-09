@@ -14,7 +14,7 @@ int parse_args(int argc, char **argv) {
     args.input      = argv[1];
     args.output     = argv[2];
     args.sigma      = argc > 3 ? atof(argv[3]) : 0.5;
-    args.k          = argc > 4 ? atof(argv[4]) : 100.0;
-    args.min_size   = argc > 5 ? atoi(argv[5]) : 20;
+    args.k          = argc > 4 ? atof(argv[4]) : 200.0;
+    args.min_size   = argc > 5 ? atoi(argv[5]) : 400;
     return 0;
 }

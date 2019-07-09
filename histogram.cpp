@@ -72,12 +72,10 @@ void calColorHist(Region &region, universe *u, int c, image<rgb> *im) {
         }
     }
 
-    l1Norm(region.colorHistogram, COLOR_HIST_SIZE);
-    l1Norm(&region.colorHistogram[COLOR_HIST_SIZE], COLOR_HIST_SIZE);
-    l1Norm(&region.colorHistogram[COLOR_HIST_SIZE*2], COLOR_HIST_SIZE);
+    l1Norm(region.colorHistogram, CHANNELS*COLOR_HIST_SIZE);
 }
 
-void calTextureHist(Region region, universe *u, int c, image<frgb> **im) {
+void calTextureHist(Region &region, universe *u, int c, image<frgb> **im) {
     BBox box = u->bbox(c);
     const float binSize = 110.0f / TEXTURE_HIST_SIZE + 0.00001f;
     const int binOffset = TEXTURE_HIST_SIZE / 2;
@@ -91,8 +89,6 @@ void calTextureHist(Region region, universe *u, int c, image<frgb> **im) {
                 region.textureHist(2, dir, (int)(imRef(im[dir], col, row).b/binSize)+binOffset)++;
             }
         }
-        l1Norm(&region.textureHist(0, dir, 0), TEXTURE_HIST_SIZE);
-        l1Norm(&region.textureHist(1, dir, 0), TEXTURE_HIST_SIZE);
-        l1Norm(&region.textureHist(2, dir, 0), TEXTURE_HIST_SIZE);
     }
+    l1Norm(region.textureHistogram, CHANNELS*TEXTURE_HIST_DIRS*TEXTURE_HIST_SIZE);
 }

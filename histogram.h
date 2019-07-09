@@ -7,6 +7,6 @@
 
 image<frgb> **calTextureGradients(image<rgb> *im);
 void calColorHist(Region &region, universe *u, int c, image<rgb> *im);
-void calTextureHist(Region region, universe *u, int c, image<frgb> **gradients);
+void calTextureHist(Region &region, universe *u, int c, image<frgb> **gradients);
 
 #endif

@@ -30,6 +30,7 @@ rgb random_rgb(){
   rgb c;
   double r;
   
+  srand(clock());
   c.r = (uchar)rand();
   c.g = (uchar)rand();
   c.b = (uchar)rand();

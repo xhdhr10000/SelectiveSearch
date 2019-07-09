@@ -14,12 +14,12 @@ float simTexture(Region r1, Region r2) {
 }
 
 float simSize(Region r1, Region r2, int size) {
-    return 1 - (r1.size + r2.size) / size;
+    return 1 - (float)(r1.size + r2.size) / (float)size;
 }
 
 float simFill(Region r1, Region r2, int size) {
-    BBox box = { MIN(r1.box.top,r2.box.top), MAX(r1.box.right,r2.box.right), MAX(r1.box.bottom,r2.box.bottom), MIN(r1.box.left,r2.box.left) };
-    return 1 - (box.area() - r1.size - r2.size) / size;
+    BBox box = BBox::merge(r1.box, r2.box);
+    return 1 - (float)(box.area() - r1.size - r2.size) / (float)size;
 }
 
 float similarity(Region r1, Region r2, image<rgb> *im, bool color, bool texture, bool size, bool fill) {
